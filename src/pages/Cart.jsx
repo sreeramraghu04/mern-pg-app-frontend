@@ -5,7 +5,7 @@ import axios from "axios";
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   //! to run frontend and backend
-  const SERVER_URL = import.meta.env.SERVER_URL;
+  const SERVER_URL = import.meta.env.VITE_API_URL;
 
   //! Remove item from cart
   const removeItem = (index) => {
