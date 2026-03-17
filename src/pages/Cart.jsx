@@ -46,7 +46,7 @@ const Cart = () => {
         description:
           "This project demonstrates secure online payments integration using a modern payment gateway.",
         order_id: order.id, //* This is the order_id created in the backend
-        callback_url: "/payment-success", //* Your success URL
+        callback_url: `${API}/api/v1/payment/payment-verification`, //* Your success URL
         prefill: {
           name: "wafa raman",
           email: "wafaramann@gmail.com",
