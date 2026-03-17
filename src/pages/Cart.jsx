@@ -5,7 +5,7 @@ import axios from "axios";
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   //! to run frontend and backend
-  const API = import.meta.env.VITE_API_URL;
+  const SERVER_URL = import.meta.env.SERVER_URL;
 
   //! Remove item from cart
   const removeItem = (index) => {
@@ -23,13 +23,13 @@ const Cart = () => {
 
     try {
       const { data: keyData } = await axios.get(
-        `${API}/api/v1/payment/get-key`,
+        `${SERVER_URL}/api/v1/payment/get-key`,
       );
       const key = keyData.key;
       console.log("Key:", key);
 
       const { data: orderData } = await axios.post(
-        `${API}/api/v1/payment/payment-process`,
+        `${SERVER_URL}/api/v1/payment/payment-process`,
         {
           amount,
         },
@@ -46,7 +46,7 @@ const Cart = () => {
         description:
           "This project demonstrates secure online payments integration using a modern payment gateway.",
         order_id: order.id, //* This is the order_id created in the backend
-        callback_url: `${API}/api/v1/payment/payment-verification`, //* Your success URL
+        callback_url: `${SERVER_URL}/api/v1/payment/payment-verification`, //* Your success URL
         prefill: {
           name: "wafa raman",
           email: "wafaramann@gmail.com",
