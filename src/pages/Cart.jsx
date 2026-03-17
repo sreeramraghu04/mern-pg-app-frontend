@@ -4,6 +4,8 @@ import axios from "axios";
 
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
+  //! to run frontend and backend
+  const API = import.meta.env.VITE_API_URL;
 
   //! Remove item from cart
   const removeItem = (index) => {
@@ -20,12 +22,14 @@ const Cart = () => {
     console.log("Amount:", amount); // must be a number
 
     try {
-      const { data: keyData } = await axios.get("/api/v1/payment/get-key");
+      const { data: keyData } = await axios.get(
+        `${API}/api/v1/payment/get-key`,
+      );
       const key = keyData.key;
       console.log("Key:", key);
 
       const { data: orderData } = await axios.post(
-        "/api/v1/payment/payment-process",
+        `${API}/api/v1/payment/payment-process`,
         {
           amount,
         },
